@@ -24,14 +24,18 @@ if (!process.env.PORT) {
 }
 
 /**
+ * Register middlewares
+ */
+app.use(expressLayouts);
+app.use('/', router);
+
+/**
  * Setup middlewares..
  */
-
+app.set('layout', 'layout');
+app.set('layout extractScripts', true);
 app.set('view engine', ejs);
 app.set('views', './views');
-app.use(expressLayouts);
-
-app.use('/', router);
 
 log.info(`Listen port: ${process.env.PORT}`);
 app.listen(process.env.PORT);
