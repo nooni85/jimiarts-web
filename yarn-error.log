@@ -1,0 +1,61 @@
+Arguments: 
+  /Users/nooni/.nvm/versions/node/v16.14.2/bin/node /Users/nooni/.nvm/versions/node/v16.14.2/bin/yarn start
+
+PATH: 
+  /Users/nooni/.nvm/versions/node/v16.14.2/bin:/Users/nooni/.rvm/gems/ruby-3.1.1/bin:/Users/nooni/.rvm/gems/ruby-3.1.1@global/bin:/Users/nooni/.rvm/rubies/ruby-3.1.1/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/nooni/.rvm/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.14.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/nooni/Documents/Project/jimiarts/package.json: Unexpected token / in JSON at position 170
+      at JSON.parse (<anonymous>)
+      at /Users/nooni/.nvm/versions/node/v16.14.2/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/Users/nooni/.nvm/versions/node/v16.14.2/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /Users/nooni/.nvm/versions/node/v16.14.2/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "jimiarts",
+    "version": "0.0.1",
+    "scripts": {
+      "lint": "eslint --ext .js,.ts src",
+      "test": "jest",
+      "start": "nodemon --config nodemon.json"
+      // "start": "nodemon --watch \"src/**/*.ts\" --exec \"ts-node\" src/app.ts"
+    },
+    "license": "MIT",
+    "devDependencies": {
+      "@types/express": "^4.17.13",
+      "@types/node": "^17.0.42",
+      "@typescript-eslint/eslint-plugin": "^5.27.1",
+      "@typescript-eslint/parser": "^5.27.1",
+      "eslint": "^8.2.0",
+      "eslint-config-airbnb-base": "15.0.0",
+      "eslint-config-airbnb-typescript": "^17.0.0",
+      "eslint-plugin-import": "^2.25.2",
+      "jest": "^28.1.1",
+      "nodemon": "^2.0.16",
+      "ts-node": "^10.8.1",
+      "typescript": "^4.7.3"
+    },
+    "dependencies": {
+      "express": "^4.18.1",
+      "reflect-metadata": "^0.1.13",
+      "typedi": "^0.10.0",
+      "winston": "^3.7.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

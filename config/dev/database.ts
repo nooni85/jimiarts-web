@@ -1,9 +1,9 @@
-import { Type } from "jimiarts";
-
-const DatabaseConfig: Type.Config = [{
+const config:ServerConfig = {
 	database: {
-		username: 'root'
+		username: 'root',
+		password: '1234',
+		host: 'localhost'
 	}
-}];
+};
 
-export default DatabaseConfig;
+export default config;

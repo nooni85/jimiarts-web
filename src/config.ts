@@ -3,7 +3,6 @@ import path from 'path';
 import { Service } from 'typedi';
 import winston from 'winston';
 import { Logger } from './logger';
-import { Type } from 'jimiarts';
 
 @Service()
 export class Config {
@@ -12,8 +11,17 @@ export class Config {
 	/**
 	 * determineEnv()
 	 */
-	protected determineEnv(): string {
-		return process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
+	protected determineEnv(): Env {
+		switch(process.env.NODE_ENV) {
+			case 'dev':
+				return 'dev';
+			case 'prod':
+				return 'prod';
+			case 'test':
+				return 'test';
+			default:
+				return 'dev';
+		}
 	}
 
 	protected determineProfilePath(): string {
@@ -29,7 +37,7 @@ export class Config {
 	}
 
 	public load() {
-		let result: Type.Config = [{}];
+		let result: ServerConfig = {};
 		let configPath = this.determineProfilePath();
 		let files = this.fetchConfigFiles();
 
@@ -37,26 +45,20 @@ export class Config {
 			let fileFullPath = path.join(configPath, file);
 			this.logger.debug(`Loading config file from : ${fileFullPath}`);
 
-			result.push(require(fileFullPath));
-		})
+			const filePath:string = path.basename(fileFullPath).replace('.ts', '');
+
+			result[filePath as keyof ServerConfig] = require(fileFullPath).default[filePath];
+
+		});
+
+		// Setup env
+		if(!result.env?.profile) {
+			result.env = {
+				profile: this.determineEnv()
+			}
+		}
+		
 
 		return result;
 	}
 }
-
-// function config(env: string, @Logger() logger: winston.Logger ) {
-// 	const configPath = path.join(__dirname, '../config', env, '*');
-// 	logger.debug('Loading config files from : ', configPath);
-
-// 	// const files = fs.readdirSync();
-// 	// console.log(files);
-// 	return [];
-// }
-
-// // let config = [];
-// // let resolveConfigPath =``
-// // console.log(resolveConfigPath);
-
-// // fs.readFileSync('../config')
-
-// export default config;
