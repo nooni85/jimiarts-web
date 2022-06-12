@@ -22,6 +22,8 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-        "indent": ["warn", "tab"]
+        "indent": ["warn", "tab",
+            { "SwitchCase": 1 }
+        ]
     }
 }

@@ -1,19 +1,37 @@
-import http from 'http';
-import express, { Request, Response } from 'express';
-import 'reflect-metadata';
+import express from 'express';
 import ejs from 'ejs';
-import { Config } from './config';
+import * as dotenv from 'dotenv';
+import { exit } from 'process';
+import expressLayouts from 'express-ejs-layouts';
+import Logger from './logger';
+import router from './router';
+
+/**
+ * dotenv config
+ * after this process.env.{value}
+ */
+dotenv.config();
 
 const app = express();
-const server = http.createServer(app);
-const config = new Config();
+const log = Logger();
+
+/**
+ * Check startup conditions...
+ */
+if (!process.env.PORT) {
+	log.error(`PORT is not defined. please define PORT number on environment variable.`);
+	exit();
+}
+
+/**
+ * Setup middlewares..
+ */
 
 app.set('view engine', ejs);
 app.set('views', './views');
+app.use(expressLayouts);
 
-app.use('/', (req: Request, res: Response) => {
-	res.render('index.ejs');
-});
+app.use('/', router);
 
-console.log('listenin port: ', config.env?.port);
-app.listen((config.env?.port ? 3000: config.env?.port));
+log.info(`Listen port: ${process.env.PORT}`);
+app.listen(process.env.PORT);
