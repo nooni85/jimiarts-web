@@ -7,12 +7,13 @@ declare global {
    */
   type ServerConfig = {
     database?: {
-      username?: string,
-      password?: string,
+      username?: string
+      password?: string
       host?: string
     },
     env?: {
-      profile: Env
+      profile?: Env
+      port?: number
     }
   };
 }

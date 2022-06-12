@@ -10,7 +10,8 @@
         "project": "./tsconfig.json"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "extends": [
         "airbnb-base",
@@ -18,9 +19,9 @@
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:prettier/recommended",
-        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-        "indent": ["error", "tab"]
+        "indent": ["warn", "tab"]
     }
 }

@@ -1,12 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { Service } from 'typedi';
-import winston from 'winston';
 import { Logger } from './logger';
 
-@Service()
 export class Config {
-	constructor(@Logger() private logger: winston.Logger) {}
+	logger = Logger();
 
 	/**
 	 * determineEnv()
@@ -54,11 +51,11 @@ export class Config {
 		// Setup env
 		if(!result.env?.profile) {
 			result.env = {
-				profile: this.determineEnv()
+				profile: this.determineEnv(),
+				...result.env
 			}
 		}
 		
-
 		return result;
 	}
 }
